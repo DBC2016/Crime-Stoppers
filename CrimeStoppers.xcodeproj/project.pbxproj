@@ -19,6 +19,7 @@
 		6287CCF81CDCFA8400455375 /* Precincts.m in Sources */ = {isa = PBXBuildFile; fileRef = 6287CCF71CDCFA8400455375 /* Precincts.m */; };
 		6287CD011CDFB8F000455375 /* Licenses.m in Sources */ = {isa = PBXBuildFile; fileRef = 6287CD001CDFB8F000455375 /* Licenses.m */; };
 		6287CD041CDFF8D200455375 /* Homocides.m in Sources */ = {isa = PBXBuildFile; fileRef = 6287CD031CDFF8D200455375 /* Homocides.m */; };
+		62EB17D91CE109AB00A1A0D6 /* MyPin.m in Sources */ = {isa = PBXBuildFile; fileRef = 62EB17D81CE109AB00A1A0D6 /* MyPin.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -44,6 +45,8 @@
 		6287CD001CDFB8F000455375 /* Licenses.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Licenses.m; sourceTree = "<group>"; };
 		6287CD021CDFF8D200455375 /* Homocides.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Homocides.h; sourceTree = "<group>"; };
 		6287CD031CDFF8D200455375 /* Homocides.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Homocides.m; sourceTree = "<group>"; };
+		62EB17D71CE109AB00A1A0D6 /* MyPin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyPin.h; sourceTree = "<group>"; };
+		62EB17D81CE109AB00A1A0D6 /* MyPin.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyPin.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -96,6 +99,8 @@
 				6287CD001CDFB8F000455375 /* Licenses.m */,
 				6287CCF61CDCFA8400455375 /* Precincts.h */,
 				6287CCF71CDCFA8400455375 /* Precincts.m */,
+				62EB17D71CE109AB00A1A0D6 /* MyPin.h */,
+				62EB17D81CE109AB00A1A0D6 /* MyPin.m */,
 				6287CCF31CDCD62400455375 /* Reachability.h */,
 				6287CCF41CDCD62400455375 /* Reachability.m */,
 				6287CCD11CDBE78400455375 /* Supporting Files */,
@@ -189,6 +194,7 @@
 				6287CCF51CDCD62400455375 /* Reachability.m in Sources */,
 				6287CCF81CDCFA8400455375 /* Precincts.m in Sources */,
 				6287CD011CDFB8F000455375 /* Licenses.m in Sources */,
+				62EB17D91CE109AB00A1A0D6 /* MyPin.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -339,6 +345,7 @@
 				6287CCEA1CDBE78400455375 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

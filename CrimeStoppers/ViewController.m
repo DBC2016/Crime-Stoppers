@@ -13,7 +13,7 @@
 #import "Precincts.h"
 #import "Licenses.h"
 #import "Homocides.h"
-
+#import "MyPin.h"
 
 
 @interface ViewController ()
@@ -68,23 +68,29 @@ bool serverAvailable;
     
     
     for (Precincts *currPrecinct in _precinctsearchArray) {
-        MKPointAnnotation *pa1 = [[MKPointAnnotation alloc] init];
+        MyPin *pa1 = [[MyPin alloc] init];
         pa1.coordinate = CLLocationCoordinate2DMake([currPrecinct.precinctLat floatValue], [currPrecinct.precinctLon floatValue]);
         pa1.title = currPrecinct.precinctName;
         pa1.subtitle = currPrecinct.precinctAddress;
+        pa1.pinType = @"precint";
         [_crimeMapView addAnnotation:pa1];
+        
+        MKCircle *circle = [MKCircle circleWithCenterCoordinate:pa1.coordinate radius:3000];
+        [_crimeMapView addOverlay:circle level:MKOverlayLevelAboveRoads];
     }
     
     for (Licenses *currLicense in _licensesearchArray) {
-        MKPointAnnotation *pa2 = [[MKPointAnnotation alloc] init];
+        MyPin *pa2 = [[MyPin alloc] init];
         pa2.coordinate = CLLocationCoordinate2DMake([currLicense.licenseLat floatValue], [currLicense.licenseLon floatValue]);
         pa2.title = currLicense.licenseBizName;
         pa2.subtitle = currLicense.licenseAddress;
+        pa2.pinType = @"license";
         [_crimeMapView addAnnotation:pa2];
     }
     for (Homocides *currHomocide in _homocidesearchArray) {
-        MKPointAnnotation *pa3 = [[MKPointAnnotation alloc] init];
+        MyPin *pa3 = [[MyPin alloc] init];
         pa3.coordinate = CLLocationCoordinate2DMake([currHomocide.homocideLatY floatValue], [currHomocide.homocideLongX floatValue]);
+        pa3.pinType = @"homocide";
         [_crimeMapView addAnnotation:pa3];
     }
     
@@ -106,9 +112,17 @@ bool serverAvailable;
         }
         pinView.canShowCallout = true;
 //        pinView.animatesDrop = false;
-        pinView.pinTintColor = [UIColor purpleColor];
+        MyPin *currPin = (MyPin *)annotation;
+        if ([currPin.pinType isEqualToString:@"precint"]) {
+            pinView.pinTintColor = [UIColor blueColor];
+        } else if ([currPin.pinType isEqualToString:@"license"]) {
+            pinView.pinTintColor = [UIColor orangeColor];
+        } else if ([currPin.pinType isEqualToString:@"homocide"]) {
+            pinView.pinTintColor = [UIColor redColor];
+        } else {
+            pinView.pinTintColor = [UIColor blackColor];
+        }
         UIButton *pinButton = [UIButton buttonWithType:UIButtonTypeDetailDisclosure];
-        pinView.tag = 2;
         pinView.rightCalloutAccessoryView = pinButton;
         return pinView;
     }
@@ -123,27 +137,27 @@ bool serverAvailable;
 
 
 
--(IBAction)mapLongPressed:(UILongPressGestureRecognizer *)gestureRecognizer {
-    if (gestureRecognizer.state == UIGestureRecognizerStateEnded) {
-        NSLog(@"Long Press");
-        CGPoint point = [gestureRecognizer locationInView:_crimeMapView];
-        CLLocationCoordinate2D pointCoord = [_crimeMapView convertPoint:point toCoordinateFromView:_crimeMapView];
-        MKPointAnnotation *pa = [[MKPointAnnotation alloc] init];
-        pa.coordinate = pointCoord;
-        
-        
-        MKCircle *circle = [MKCircle circleWithCenterCoordinate:pointCoord radius:3000];
-        [_crimeMapView addOverlay:circle level:MKOverlayLevelAboveRoads];
-    }
-    
-}
+//-(IBAction)mapLongPressed:(UILongPressGestureRecognizer *)gestureRecognizer {
+//    if (gestureRecognizer.state == UIGestureRecognizerStateEnded) {
+//        NSLog(@"Long Press");
+//        CGPoint point = [gestureRecognizer locationInView:_crimeMapView];
+//        CLLocationCoordinate2D pointCoord = [_crimeMapView convertPoint:point toCoordinateFromView:_crimeMapView];
+//        MKPointAnnotation *pa = [[MKPointAnnotation alloc] init];
+//        pa.coordinate = pointCoord;
+//        
+//        
+//        MKCircle *circle = [MKCircle circleWithCenterCoordinate:pointCoord radius:3000];
+//        [_crimeMapView addOverlay:circle level:MKOverlayLevelAboveRoads];
+//    }
+//    
+//}
 
 
 -(MKOverlayRenderer *)mapView:(MKMapView *)mapView rendererForOverlay:(id<MKOverlay>)overlay {
     if ([overlay isKindOfClass:[MKCircle class]]) {
         MKCircleRenderer *renderer = [[MKCircleRenderer alloc] initWithOverlay:overlay];
-        [renderer setFillColor:[UIColor greenColor]];
-        [renderer setAlpha:2.0f];
+        [renderer setFillColor:[UIColor blueColor]];
+        [renderer setAlpha:0.3];
         
 
         
@@ -302,13 +316,13 @@ bool serverAvailable;
                 for (NSDictionary *homocidesDict in homocidesTempArray){
                     
                     
-                NSDictionary *coorDict = [homocidesDict objectForKey:@"x, y"];
-                NSArray *coordinates = [coorDict objectForKey:@"coordinates"];
+//                NSDictionary *coorDict = [homocidesDict objectForKey:@"x, y"];
+//                NSArray *coordinates = [coorDict objectForKey:@"coordinates"];
                     
                     Homocides *newHomocide= [[Homocides alloc] initWithHomocideAddress:[homocidesDict objectForKey:@"address"] andHomocidePrecinct:[homocidesDict objectForKey:@"precinct"] andHomocideReportNo:[homocidesDict objectForKey:@"report_no"] andHomocideTime:[homocidesDict objectForKey:@"time"] andHomocideLongX:[homocidesDict objectForKey:@"x"] andHomocideLatY:[homocidesDict objectForKey:@"y"]];
                     
-                    newHomocide.homocideLatY = coordinates [1];
-                    newHomocide.homocideLongX = coordinates [0];
+//                    newHomocide.homocideLatY = coordinates [1];
+//                    newHomocide.homocideLongX = coordinates [0];
                     
                     [_homocidesearchArray addObject:newHomocide];
                     NSLog(@"Homocide: %@",newHomocide.homocideReportNo);
