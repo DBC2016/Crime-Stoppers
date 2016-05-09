@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="Wxr-ho-nLD">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="Navigation items with more than one left or right bar item" minToolsVersion="7.0"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController id="BYZ-38-t0r" customClass="ViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
+                        <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="DHF-S2-FNu">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                                <gestureRecognizers/>
+                                <connections>
+                                    <outlet property="delegate" destination="BYZ-38-t0r" id="WdA-t4-vL9"/>
+                                    <outletCollection property="gestureRecognizers" destination="Mqs-nt-PVS" appends="YES" id="Bd5-au-v56"/>
+                                </connections>
+                            </mapView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="DHF-S2-FNu" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="-64" id="PJj-Oj-mqK"/>
+                            <constraint firstItem="DHF-S2-FNu" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="-20" id="eFS-Gm-Org"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="DHF-S2-FNu" secondAttribute="bottom" id="tUG-HJ-YB8"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="DHF-S2-FNu" secondAttribute="trailing" constant="-20" id="uoB-q2-cKX"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="bWV-4Z-6gw">
+                        <rightBarButtonItems>
+                            <barButtonItem title="Police" id="aH0-yc-DC2">
+                                <connections>
+                                    <action selector="getPoliceStationsFromServer" destination="BYZ-38-t0r" id="Wx2-be-RUc"/>
+                                </connections>
+                            </barButtonItem>
+                            <barButtonItem title="Licenses" id="EgH-D7-GW5">
+                                <connections>
+                                    <action selector="getLiquorLicensesFromServer" destination="BYZ-38-t0r" id="TeR-DU-yAX"/>
+                                </connections>
+                            </barButtonItem>
+                            <barButtonItem title="Homocides" id="61U-9Y-GUz">
+                                <connections>
+                                    <action selector="getHomocidesFromServer" destination="BYZ-38-t0r" id="Z35-oU-VaT"/>
+                                </connections>
+                            </barButtonItem>
+                        </rightBarButtonItems>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="crimeMapView" destination="DHF-S2-FNu" id="ThF-te-VQU"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+                <pongPressGestureRecognizer allowableMovement="10" minimumPressDuration="0.5" id="Mqs-nt-PVS"/>
+            </objects>
+            <point key="canvasLocation" x="1057" y="-75"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="Lfr-kF-vQo">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Wxr-ho-nLD" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="09Y-ys-sWr">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="a88-qi-ZGa"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="8o3-uC-V9u" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="237" y="-75"/>
+        </scene>
+    </scenes>
+</document>
